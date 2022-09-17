@@ -1,9 +1,10 @@
-<Insert Project Name Here>
+semver-sort
+
 Copyright 2022 Optum
 
 Project Description:
 ====================
-<Short description of your project>
+Deno module and cli tool for semantically sorting a set of version strings.
 
 Author(s):
-<List the names and GitHub IDs of the original project authors>
+Justin Chase (@justinmchase)
