@@ -28,7 +28,7 @@ We have some general guidelines towards contributing to this project.
 
 ### Languages
 
-_Lua_
+_Typescript_
 
 ## Pull Requests
 
