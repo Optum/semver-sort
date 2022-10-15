@@ -47,5 +47,12 @@ Deno.test({
   fn: () => {
     const v = parse("0.13.1.dev0");
     assertEquals(v.toString(), "0.13.1-dev.0");
-  }
-})
+  },
+});
+Deno.test({
+  name: "PARSE07",
+  fn: () => {
+    const v = parse("12.0.0b4");
+    assertEquals(v.toString(), "12.0.0-b.4");
+  },
+});

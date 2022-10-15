@@ -9,9 +9,15 @@ export function parse(version: Version): SemVer {
 
   // supports converting python pre-release versions into common semver
   // e.g. `0.13.1.dev0` -> `0.13.1-dev.0`
-  const m = versionString.match(/(\d+)[.](\d+)[.](\d+)[.](\w+)(\d+)/);
-  if (m) {
-    const [, major, minor, patch, pre, dev] = m;
+  const py0 = versionString.match(/(\d+)[.](\d+)[.](\d+)[.](\w+)(\d+)/);
+  if (py0) {
+    const [, major, minor, patch, pre, dev] = py0;
+    versionString = `${major}.${minor}.${patch}-${pre}.${dev}`;
+  }
+  // e.g. `0.13.1d0` -> `0.13.1-d.0`
+  const py1 = versionString.match(/(\d+)[.](\d+)[.](\d+)(\w+)(\d+)/);
+  if (py1) {
+    const [, major, minor, patch, pre, dev] = py1;
     versionString = `${major}.${minor}.${patch}-${pre}.${dev}`;
   }
 
