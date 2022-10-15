@@ -13,7 +13,7 @@ try {
     console.log(version);
   }
 } catch (err) {
-  const { code } = err
+  const { code } = err;
   if (code === "EPIPE") {
     // ignore, this can happen if stdout is closed by a piped process
     // such as `semver-sort | head -n 1` which will close stdout after a single line.
