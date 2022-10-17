@@ -5,19 +5,23 @@ export function parse(version: Version): SemVer {
   if (version instanceof semver.SemVer) {
     return version;
   }
-  let versionString = version.toString();
+  let versionString = version.toString().trim();
 
-  // supports converting python pre-release versions into common semver
-  // e.g. `0.13.1.dev0` -> `0.13.1-dev.0`
-  const py0 = versionString.match(/(\d+)[.](\d+)[.](\d+)[.](\w+)(\d+)/);
-  if (py0) {
-    const [, major, minor, patch, pre, dev] = py0;
-    versionString = `${major}.${minor}.${patch}-${pre}.${dev}`;
-  }
-  // e.g. `0.13.1d0` -> `0.13.1-d.0`
-  const py1 = versionString.match(/(\d+)[.](\d+)[.](\d+)(\w+)(\d+)/);
-  if (py1) {
-    const [, major, minor, patch, pre, dev] = py1;
+
+  // Python version documentation:
+  // https://peps.python.org/pep-0440/#public-version-identifiers
+  // 
+  // supports converting _most_ python versions into common semver
+  // [N!]N(.N)*[{a|b|rc}N][.postN][.devN]
+  //
+  // | example     | result       |
+  // | ----------- | ------------ |
+  // | 0.13.1.dev0 | 0.13.1-dev.0 |
+  // | 0.13.1d0    | 0.13.1-d.0   |
+  // 
+  const py = versionString.match(/^(\d+)[.](\d+)[.](\d+)[.]?(a|b|rc|dev|post)(\d+)$/);
+  if (py) {
+    const [, major, minor, patch, pre, dev] = py;
     versionString = `${major}.${minor}.${patch}-${pre}.${dev}`;
   }
 
