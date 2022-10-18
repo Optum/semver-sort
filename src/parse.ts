@@ -16,7 +16,7 @@ export function parse(version: Version): SemVer {
   // | example     | result       |
   // | ----------- | ------------ |
   // | 0.13.1.dev0 | 0.13.1-dev.0 |
-  // | 0.13.1d0    | 0.13.1-d.0   |
+  // | 0.13.1b0    | 0.13.1-b.0   |
   //
   const py = versionString.match(
     /^(\d+)[.](\d+)[.](\d+)[.]?(a|b|rc|dev|post)(\d+)$/,
