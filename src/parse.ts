@@ -13,10 +13,13 @@ export function parse(version: Version): SemVer {
   // supports converting _most_ python versions into common semver
   // [N!]N(.N)*[{a|b|rc}N][.postN][.devN]
   //
-  // | example     | result       |
-  // | ----------- | ------------ |
-  // | 0.13.1.dev0 | 0.13.1-dev.0 |
-  // | 0.13.1b0    | 0.13.1-b.0   |
+  // | example      | result        |
+  // | ------------ | ------------- |
+  // | 0.13.1a0     | 0.13.1-a.0    |
+  // | 0.13.1b0     | 0.13.1-b.0    |
+  // | 0.13.1rc0    | 0.13.1-rc.0   |
+  // | 0.13.1.dev0  | 0.13.1-dev.0  |
+  // | 0.13.1.post0 | 0.13.1-post.0 |
   //
   const py = versionString.match(
     /^(\d+)[.](\d+)[.](\d+)[.]?(a|b|rc|dev|post)(\d+)$/,
