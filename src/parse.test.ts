@@ -42,3 +42,22 @@ Deno.test({
     assertEquals(parse(v), v);
   },
 });
+
+const pythonVersions = [
+  ["0.13.1a0", "0.13.1-a.0"],
+  ["0.13.1b0", "0.13.1-b.0"],
+  ["0.13.1rc0", "0.13.1-rc.0"],
+  ["0.13.1.dev0", "0.13.1-dev.0"],
+  ["0.13.1.post0", "0.13.1-post.0"],
+];
+
+for (let i = 0; i < pythonVersions.length; i++) {
+  const [input, expected] = pythonVersions[i];
+  Deno.test({
+    name: `PY${i.toString().padStart(2, "0")}`,
+    fn: () => {
+      const v = parse(input);
+      assertEquals(v.toString(), expected);
+    },
+  });
+}
