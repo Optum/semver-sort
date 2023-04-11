@@ -10,7 +10,7 @@ Sorts a set of version strings semantically
 
 ```ts
 import * as semver from "https://deno.land/std@0.155.0/semver/mod.ts";
-import { semverSort } from "https://deno.land/x/semver-sort@0.1.2/mod.ts";
+import { semverSort } from "https://deno.land/x/semver_sort@0.1.3/mod.ts";
 
 const sorted: { version: string; semver: SemVer }[] = semverSort(
   "1.12.0",
@@ -27,13 +27,13 @@ const sorted: { version: string; semver: SemVer }[] = semverSort(
 Pass line delimited version strings as stdin to have them sorted.
 
 ```sh
-cat test.txt | deno run "https://deno.land/x/semver-sort@0.1.0/main.ts"
+cat test.txt | deno run "https://deno.land/x/semver_sort@0.1.3/main.ts"
 ```
 
 ##### install
 
 ```sh
-deno install "https://deno.land/x/semver-sort@0.1.0/main.ts" -n semver-sort
+deno install "https://deno.land/x/semver_sort@0.1.3/main.ts" -n semver-sort
 cat test.txt | semver-sort
 ```
 
